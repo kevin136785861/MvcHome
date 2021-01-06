@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.dao.UserDao">
+    <resultMap id="myUser" type="demo.domain.User">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="birthday" column="birthday"/>
+        <result property="sex" column="sex"></result>
+        <result property="address" column="address"/>
+    </resultMap>
+    <select id="selectUserById" parameterType="_int" resultMap="myUser">
+        SELECT * FROM user WHERE id=#{id}
+    </select>
+
+    <select id="selectUserByAddrAndSexA" parameterType="demo.domain.User" resultType="demo.domain.User">
+        SELECT * FROM user
+        <where>
+            <if test="user.id!=null and user.id!=''">
+                and id=#{user.id}
+            </if>
+            <if test="user.username!=null and user.username!=''">
+                and username=#{user.username}
+            </if>
+            <if test="user.sex!=null and user.sex!=''">
+                and sex=#{user.sex}
+            </if>
+            <if test="user.birthday!=null and user.birthday!=''">
+                and birthday=#{user.birthday}
+            </if>
+            <if test="user.address!=null and user.address!=''">
+                and address=#{user.address}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectUserBySomeAddr" resultMap="myUser">
+        SELECT * FROM user WHERE address in
+        <foreach collection="addresses" open="(" close=")" separator="," item="addr">
+            #{addr}
+        </foreach>
+    </select>
+
+    <select id="selectUserLikeName" parameterType="String" resultType="demo.domain.User">
+        SELECT * FROM user where username like '%${name}%'
+    </select>
+
+    <insert id="insertUser" parameterType="demo.domain.User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user(username,birthday,sex,address) values (#{user.username},#{user.birthday},#{user.sex}, #{user.address})
+    </insert>
+
+    <select id="selectAllUser" resultMap="myUser">
+        SELECT * FROM user
+    </select>
+    
+    <select id="selectAllMapUser" resultMap="myUser">
+        SELECT * FROM user
+    </select>
+
+    <insert id="insertUserList" >
+        INSERT INTO user(username,birthday,sex,address) values
+        <foreach collection="list" item="user" separator=",">
+            (#{user.username},#{user.birthday},#{user.sex}, #{user.address})
+        </foreach>
+    </insert>
+
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.dao.ClassesDao">
+    <resultMap type="demo.domain.Classes" id="ClassResultMap">
+        <id property="id" column="c_id"/>
+        <result property="name" column="c_name"/>
+        <association property="teacher" javaType="demo.domain.Teacher">
+            <id property="id" column="t_id"/>
+            <result property="name" column="t_name"/>
+        </association>
+    </resultMap>
+    <resultMap id="ClassResultMap2" type="demo.domain.Classes">
+        <id property="id" column="c_id"/>
+        <result property="name" column="c_name"/>
+        <association property="teacher" column="teacher_id" javaType="demo.domain.Teacher">
+            <id property="id" column="t_id"/>
+            <result property="name" column="t_name"/>
+        </association>
+        <collection property="students" ofType="demo.domain.Student">
+            <id property="id" column="s_id"/>
+            <result property="name" column="s_name"/>
+        </collection>
+    </resultMap>
+
+    <select id="getClass" parameterType="demo.domain.Classes" resultMap="ClassResultMap">
+        SELECT * FROM class c,teacher t WHERE c.teacher_id=t.t_id and  c.c_id=#{id}
+    </select>
+
+    <select id="getClass1" resultMap="ClassResultMap2">
+        SELECT * FROM class c,teacher t,student s where c.teacher_id=t.t_id and c.C_id=s.class_id and  c.c_id=#{id}
+    </select>
+</mapper>

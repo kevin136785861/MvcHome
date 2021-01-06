@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+    <!-- 使用bean元素定义一个由IOC容器创建的对象 -->
+    <!-- class属性指定用于创建bean的全类名 -->
+    <!-- id属性指定用于引用bean实例的标识 -->
+    <!--开启注解扫描-->
+    <context:annotation-config/>
+    <!--配置扫描的包-->
+    <context:component-scan base-package="demo"/>
+</beans>
