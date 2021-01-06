@@ -18,6 +18,27 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <configurationFile>${basedir}/src/main/resources/conf/generator/generatorConfig.xml</configurationFile>
+                    <!-- 设置覆盖原有的文件:第二次执行的时候 -->
+                    <overwrite>true</overwrite>
+                    <!-- 输出一些日志信息-->
+                    <verbose>true</verbose>
+                </configuration>
+
+                <dependencies>
+                    <!-- maven 插件使用依赖包要独立设置 -->
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.48</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
