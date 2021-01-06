@@ -1,8 +1,10 @@
 import demo.dao.ClassesDao;
+import demo.dao.ProductMapper;
 import demo.dao.UserDao;
 import demo.domain.Classes;
+import demo.domain.Product;
+import demo.domain.ProductExample;
 import demo.domain.User;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -119,5 +121,15 @@ public class TestDemo {
         ClassesDao classesDao = sqlSession.getMapper(ClassesDao.class);
         List<Classes> class1 = classesDao.getClass1(2);
         System.out.println(class1);
+    }
+
+    @Test
+    public void test11(){
+        ProductMapper pm = sqlSession.getMapper(ProductMapper.class);
+        ProductExample pe = new ProductExample();
+        ProductExample.Criteria criteria = pe.createCriteria();
+        criteria.andPidBetween(2,5);
+        List<Product> products = pm.selectByExample(pe);
+        System.out.println(products);
     }
 }

@@ -17,6 +17,7 @@
         <mappers>
             <mapper resource="conf/mapper/UserDao.xml"/>
             <mapper resource="conf/mapper/ClassesDao.xml"/>
+            <mapper resource="conf/mapper/ProductMapper.xml"/>
         </mappers>
 
 </configuration>
