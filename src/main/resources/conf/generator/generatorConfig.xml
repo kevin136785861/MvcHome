@@ -36,7 +36,9 @@
         </javaClientGenerator>
 
         <!--  对应的表生成对应的 实体类 -->
-        <table tableName="product" domainObjectName="Product"/>
+        <table tableName="product" domainObjectName="Product">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
 
         <!--  <table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >
               <property name="useActualColumnNames" value="true"/>

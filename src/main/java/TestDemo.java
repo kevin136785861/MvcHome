@@ -2,7 +2,6 @@ import demo.dao.ClassesDao;
 import demo.dao.ProductMapper;
 import demo.dao.UserDao;
 import demo.domain.Classes;
-import demo.domain.Product;
 import demo.domain.ProductExample;
 import demo.domain.User;
 import org.apache.ibatis.io.Resources;

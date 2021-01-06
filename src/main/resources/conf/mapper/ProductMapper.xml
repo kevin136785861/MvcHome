@@ -5,7 +5,7 @@
     <result column="pid" jdbcType="INTEGER" property="pid" />
     <result column="pname" jdbcType="VARCHAR" property="pname" />
     <result column="price" jdbcType="DOUBLE" property="price" />
-    <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+    <result column="category_id" jdbcType="VARCHAR" property="category_id" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -92,7 +92,7 @@
     insert into product (pid, pname, price, 
       category_id)
     values (#{pid,jdbcType=INTEGER}, #{pname,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
-      #{categoryId,jdbcType=VARCHAR})
+      #{category_id,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="demo.domain.Product">
     insert into product
@@ -106,7 +106,7 @@
       <if test="price != null">
         price,
       </if>
-      <if test="categoryId != null">
+      <if test="category_id != null">
         category_id,
       </if>
     </trim>
@@ -120,8 +120,8 @@
       <if test="price != null">
         #{price,jdbcType=DOUBLE},
       </if>
-      <if test="categoryId != null">
-        #{categoryId,jdbcType=VARCHAR},
+      <if test="category_id != null">
+        #{category_id,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -143,8 +143,8 @@
       <if test="record.price != null">
         price = #{record.price,jdbcType=DOUBLE},
       </if>
-      <if test="record.categoryId != null">
-        category_id = #{record.categoryId,jdbcType=VARCHAR},
+      <if test="record.category_id != null">
+        category_id = #{record.category_id,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -156,7 +156,7 @@
     set pid = #{record.pid,jdbcType=INTEGER},
       pname = #{record.pname,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DOUBLE},
-      category_id = #{record.categoryId,jdbcType=VARCHAR}
+      category_id = #{record.category_id,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
