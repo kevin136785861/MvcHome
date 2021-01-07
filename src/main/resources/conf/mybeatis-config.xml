@@ -3,6 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
     <environments default="env1">
         <environment id="env1">
             <transactionManager type="JDBC"/>
@@ -19,5 +22,4 @@
             <mapper resource="conf/mapper/ClassesDao.xml"/>
             <mapper resource="conf/mapper/ProductMapper.xml"/>
         </mappers>
-
 </configuration>

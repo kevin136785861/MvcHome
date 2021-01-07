@@ -1,7 +1,10 @@
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import demo.dao.ClassesDao;
 import demo.dao.ProductMapper;
 import demo.dao.UserDao;
 import demo.domain.Classes;
+import demo.domain.Product;
 import demo.domain.ProductExample;
 import demo.domain.User;
 import org.apache.ibatis.io.Resources;
@@ -77,6 +80,7 @@ public class TestDemo {
     public void test06() {
         //before();
         UserDao userDao = sqlSession.getMapper(UserDao.class);
+        Page<Object> page = PageHelper.startPage(2, 5);
         List<User> users = userDao.selectAllUser();
         for (User user : users) {
             System.out.println(user);
